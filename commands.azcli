@@ -17,7 +17,7 @@ echo $servicePlan
 export webapp=MyFirstWebApp-app
 echo $webapp
 
-export repo=fmachado/MyFirstWebApp
+export repo=fmachadopiriz/MyFirstWebApp
 echo $repo
 
 export token=
