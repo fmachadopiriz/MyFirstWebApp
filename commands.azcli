@@ -1,0 +1,34 @@
+# https://learn.microsoft.com/en-us/azure/app-service/quickstart-dotnetcore?tabs=net80&pivots=development-environment-vscode
+
+# Create the app
+dotnet new webapp --framework net8.0
+
+# Run the app
+dotnet run --urls=https://localhost:5001/
+
+# Create Azure resources
+
+export resourceGroup=MyFirstWebApp-rg
+echo $resourceGroup
+
+export servicePlan=MyFirstWebApp-sp
+echo $servicePlan
+
+export webapp=MyFirstWebApp-app
+echo $webapp
+
+export repo=fmachado/MyFirstWebApp
+echo $repo
+
+export token=
+echo $token
+
+az login
+
+az group create --name $resourceGroup --location EastUS2
+
+az appservice plan create --name $servicePlan --resource-group $resourceGroup
+
+az webapp create --name $webapp --resource-group $resourceGroup --plan $servicePlan --runtime dotnet:8
+
+az webapp deployment github-actions add --repo $repo -g $resourceGroup -n $webapp --token $token
